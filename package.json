@@ -1,0 +1,19 @@
+{
+    "name": "calculator",
+    "version": "1.0.0",
+    "description": "Calculator project",
+    "main": "index.js",
+    "scripts": {
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production",
+        "start": "webpack-dev-server --mode development --open"
+    },
+    "author": "Valeriia-Rieznik",
+    "license": "ISC",
+    "devDependencies": {
+        "html-webpack-plugin": "^3.2.0",
+        "webpack": "^4.42.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3"
+    }
+}
