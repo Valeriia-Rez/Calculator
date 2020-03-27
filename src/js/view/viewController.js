@@ -1,6 +1,6 @@
 export default class viewController {
     constructor() {
-        this.number = [];
+        this.number = "0";
 
     }
 
@@ -18,13 +18,12 @@ export default class viewController {
 }
 
     getNumber(e){
-        const numberId = e.target.dataset.id;
-        this.number += numberId;
-      }
+        this.number = e.target.dataset.id;
+    }
 
-    updateDisplay(displayValue){
+    updateDisplay(value){
         const res = document.querySelector(".result");
-        res.textContent = displayValue;
+        res.textContent = value;
     }
 
     renderCalculatorUI() {
@@ -64,7 +63,7 @@ export default class viewController {
             </div>
             <div class="row">
                 <div class="col-12 my-2">
-                    <button type="button" class="btn btn-warning btn-lg rounded-circle text-white calculator-keys operator"value="-">-</button>
+                    <button type="button" class="btn btn-warning btn-lg rounded-circle text-white calculator-keys operator" value="-">-</button>
                 </div>
             </div>
             <div class="row">

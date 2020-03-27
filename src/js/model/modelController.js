@@ -11,9 +11,10 @@ export default class modelController {
             this.displayValue = number;
             this.waitingForSecondOperand = false;
         } else {
-            this.displayValue = number;
+            this.displayValue = this.displayValue === '0' ? number : this.displayValue + number;
+
         }
-        console.log("ee", this);
+
     }
 
     inputDecimal(dot) {
@@ -24,12 +25,29 @@ export default class modelController {
 
     handleOperator(nextOperator) {
         const inputValue = parseFloat(this.displayValue);
+
         if (this.firstOperand === null) {
             this.firstOperand = inputValue;
+        } else if (this.operator) {
+            const result = performCalculation[this.operator](this.firstOperand, inputValue);
+            this.displayValue = String(result);
+            this.firstOperand = result;
         }
 
         this.waitingForSecondOperand = true;
         this.operator = nextOperator;
-        console.log("hh", this);
+
     }
 }
+
+const performCalculation = {
+    '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
+
+    'x': (firstOperand, secondOperand) => firstOperand * secondOperand,
+
+    '+': (firstOperand, secondOperand) => firstOperand + secondOperand,
+
+    '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
+
+    '=': (firstOperand, secondOperand) => secondOperand
+};
