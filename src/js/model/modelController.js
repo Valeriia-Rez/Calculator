@@ -1,11 +1,35 @@
 export default class modelController {
     constructor() {
-        this.result = 0;
-
+        this.displayValue = "0";
+        this.firstOperand = null;
+        this.operator = null;
+        this.waitingForSecondOperand = false;
     }
 
+    inputNumber(number) {
+        if (this.waitingForSecondOperand === true) {
+            this.displayValue = number;
+            this.waitingForSecondOperand = false;
+        } else {
+            this.displayValue = number;
+        }
+        console.log("ee", this);
+    }
 
-    add(number) {
-        this.result = parseInt(number) + parseInt(number);
+    inputDecimal(dot) {
+        if (!this.displayValue.includes(dot)) {
+            this.displayValue += dot;
+        }
+    }
+
+    handleOperator(nextOperator) {
+        const inputValue = parseFloat(this.displayValue);
+        if (this.firstOperand === null) {
+            this.firstOperand = inputValue;
+        }
+
+        this.waitingForSecondOperand = true;
+        this.operator = nextOperator;
+        console.log("hh", this);
     }
 }

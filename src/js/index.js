@@ -3,29 +3,42 @@ import viewController from './view/viewController';
 const model = new modelController();
 const view = new viewController();
 
-class appController {
-    constructor() {
+const renderOperators = (event) => {
+    const { target } = event;
+    if (!target.matches('button')) {
+        return;
+    }
 
+    if (target.classList.contains('operator')) {
+        model.handleOperator(target.value);
+        view.updateDisplay(model.displayValue);
+        return;
     }
-    renderNumbers() {
-        view.renderCalculatorUI();
-        const plus = document.querySelector("#plus");
-        plus.addEventListener("click", app.addNumbers);
-        const equally = document.querySelector("#equally");
-        equally.addEventListener("click", app.displayResult);
-    }
-    addNumbers() {
 
-        model.add(parseInt(view.number));
+    if (target.classList.contains('decimal')) {
+        model.inputDecimal(target.value);
+        view.updateDisplay(model.displayValue);
+        return;
+    }
 
+    if (target.classList.contains('all-clear')) {
+        console.log('clear', target.value);
+        return;
     }
-    displayResult() {
-        view.renderResult(model.result);
-        console.log(model.result);
-    }
+
+    model.inputNumber(view.number);
+    view.updateDisplay(model.displayValue);
+
 }
 
 
+const renderNumbers = () => {
+    view.renderCalculatorUI();
+    view.updateDisplay(model.displayValue);
 
-const app = new appController();
-window.addEventListener("DOMContentLoaded", app.renderNumbers);
+    const keys = document.querySelectorAll('.calculator-keys');
+    keys.forEach(button => button.addEventListener("click", renderOperators));
+}
+
+
+window.addEventListener("DOMContentLoaded", renderNumbers);
