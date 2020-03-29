@@ -4,6 +4,7 @@ export default class modelController {
         this.firstOperand = null;
         this.operator = null;
         this.waitingForSecondOperand = false;
+
     }
 
     inputNumber(number) {
@@ -11,6 +12,7 @@ export default class modelController {
             this.displayValue = number;
             this.waitingForSecondOperand = false;
         } else {
+            if (this.displayValue.length > 12) return;
             this.displayValue = this.displayValue === '0' ? number : this.displayValue + number;
 
         }
@@ -25,6 +27,7 @@ export default class modelController {
         }
     }
 
+
     handleOperator(nextOperator) {
         const performCalculation = {
             '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
@@ -35,6 +38,7 @@ export default class modelController {
 
             '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
 
+
             '=': (firstOperand, secondOperand) => secondOperand
         };
 
@@ -42,7 +46,6 @@ export default class modelController {
 
         if (this.operator && this.waitingForSecondOperand) {
             this.operator = nextOperator;
-            console.log(this);
             return;
         }
 
@@ -51,7 +54,7 @@ export default class modelController {
         } else if (this.operator) {
             const currentValue = this.firstOperand || 0;
             const result = performCalculation[this.operator](currentValue, inputValue);
-            this.displayValue = String(result);
+            this.displayValue = String(result).substr(0, 13);
             this.firstOperand = result;
         }
 

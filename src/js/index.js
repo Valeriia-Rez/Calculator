@@ -21,6 +21,7 @@ const renderOperators = (event) => {
         return;
     }
 
+
     if (target.classList.contains('all-clear')) {
         model.resetCalculator();
         view.updateDisplay(model.displayValue);

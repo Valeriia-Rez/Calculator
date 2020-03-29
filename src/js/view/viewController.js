@@ -38,7 +38,7 @@ export default class viewController {
                     <button class="btn btn-light rounded-circle text-dark calculator-keys">+/-</button>
                 </div>
                 <div class="col-4 p-0">
-                    <button class="btn btn-light rounded-circle text-dark calculator-keys">%</button>
+                    <button class="btn btn-light rounded-circle text-dark calculator-keys operator percentage" value="%">%</button>
                 </div>
             </div>
         
