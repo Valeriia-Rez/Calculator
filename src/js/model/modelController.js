@@ -18,18 +18,39 @@ export default class modelController {
     }
 
     inputDecimal(dot) {
+        if (this.waitingForSecondOperand === true) return;
+
         if (!this.displayValue.includes(dot)) {
             this.displayValue += dot;
         }
     }
 
     handleOperator(nextOperator) {
+        const performCalculation = {
+            '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
+
+            'x': (firstOperand, secondOperand) => firstOperand * secondOperand,
+
+            '+': (firstOperand, secondOperand) => firstOperand + secondOperand,
+
+            '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
+
+            '=': (firstOperand, secondOperand) => secondOperand
+        };
+
         const inputValue = parseFloat(this.displayValue);
+
+        if (this.operator && this.waitingForSecondOperand) {
+            this.operator = nextOperator;
+            console.log(this);
+            return;
+        }
 
         if (this.firstOperand === null) {
             this.firstOperand = inputValue;
         } else if (this.operator) {
-            const result = performCalculation[this.operator](this.firstOperand, inputValue);
+            const currentValue = this.firstOperand || 0;
+            const result = performCalculation[this.operator](currentValue, inputValue);
             this.displayValue = String(result);
             this.firstOperand = result;
         }
@@ -38,16 +59,11 @@ export default class modelController {
         this.operator = nextOperator;
 
     }
+
+    resetCalculator() {
+        this.displayValue = '0';
+        this.firstOperand = null;
+        this.waitingForSecondOperand = false;
+        this.operator = null;
+    }
 }
-
-const performCalculation = {
-    '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
-
-    'x': (firstOperand, secondOperand) => firstOperand * secondOperand,
-
-    '+': (firstOperand, secondOperand) => firstOperand + secondOperand,
-
-    '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
-
-    '=': (firstOperand, secondOperand) => secondOperand
-};
