@@ -10,7 +10,7 @@ export default class viewController {
                         `
                         ${item === 0 ? 
                             `<div class="col-8 my-2 px-2 px-md-3 px-xl-4">
-                                <button type="button" class="btn btn-secondary btn-block py-3 h-100 rounded-pill calculator-keys zero" data-id=${item} data-selector="number">${item}</button>
+                                <button type="button" class="btn btn-secondary btn-block py-3 h-100 rounded-pill calculator-keys" data-id=${item} data-selector="number">${item}</button>
                             </div>`
                             : 
                         `<div class="col-4 p-0 my-2">
@@ -82,7 +82,5 @@ const numbers = document.querySelector("[data-selector='numbers']");
 numbers.appendChild(numberItems);
 const number = document.querySelectorAll("[data-selector='number']");
 number.forEach(button => button.addEventListener("click", e =>  this.getNumber(e)));
-
-
 }
 }
