@@ -7,14 +7,16 @@ export default class viewController {
     renderNumberItems() {
             let number = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
             return number.map(item => (
-                        `<div class="col-4 p-0 my-2">
+                        `
                         ${item === 0 ? 
-                            `<button type="button" class="btn btn-secondary ml-2 ml-xl-3 rounded-pill calculator-keys zero" data-id=${item} data-selector="number">${item}</button>`
+                            `<div class="col-8 my-2 px-2 px-md-3 px-xl-4">
+                                <button type="button" class="btn btn-secondary btn-block py-3 h-100 rounded-pill calculator-keys zero" data-id=${item} data-selector="number">${item}</button>
+                            </div>`
                             : 
-                        `<button type="button" class="btn btn-secondary rounded-circle calculator-keys" data-id=${item} data-selector="number">${item}</button>`
-                        }
-                    </div>
-            `)).join("");
+                        `<div class="col-4 p-0 my-2">
+                            <button type="button" class="btn btn-secondary btn-lg px-4 py-3 rounded-circle calculator-keys" data-id=${item} data-selector="number">${item}</button>
+                        </div>`
+                        }`)).join("");
 }
 
     getNumber(e){
@@ -31,21 +33,15 @@ export default class viewController {
     <div class="row m-0">
         <div class="col-9">
             <div class="row mb-2">
-                <div class="col-4 p-0">
-                    <button class="btn btn-light rounded-circle text-dark calculator-keys all-clear" value="all-clear">AC</button>
-                </div>
-                <div class="col-4 p-0">
-                    <button class="btn btn-light rounded-circle text-dark calculator-keys">+/-</button>
-                </div>
-                <div class="col-4 p-0">
-                    <button class="btn btn-light rounded-circle text-dark calculator-keys operator percentage" value="%">%</button>
+                <div class="col-12 px-2 px-md-3 px-lg-4">
+                    <button class="btn btn-light btn-block  btn-lg py-3  rounded-pill text-dark calculator-keys all-clear" value="all-clear">AC</button>
                 </div>
             </div>
         
-            <div class="row justify-content-between">
+            <div class="row">
                 ${this.renderNumberItems()}
                 <div class="col-4 p-0 my-2">
-                    <button class="btn btn-secondary rounded-circle calculator-keys decimal" value=".">.</button>
+                    <button class="btn btn-secondary btn-lg px-4 py-3 rounded-circle calculator-keys decimal" value=".">.</button>
                 </div>
             </div>
         </div>
@@ -53,27 +49,27 @@ export default class viewController {
         <div class="col-3">
             <div class="row">
                 <div class="col-12 mb-2 p-0">
-                    <button type="button" class="btn btn-warning rounded-circle text-white calculator-keys operator" value="/">/</button>
+                    <button type="button" class="btn btn-warning btn-lg px-4 py-3 rounded-circle text-white calculator-keys operator" value="/">/</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 my-2 p-0">
-                    <button type="button" class="btn btn-warning rounded-circle text-white calculator-keys operator" value="x">x</button>
+                    <button type="button" class="btn btn-warning btn-lg px-4 py-3 rounded-circle text-white calculator-keys operator" value="x">x</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 my-2 p-0">
-                    <button type="button" class="btn btn-warning rounded-circle text-white calculator-keys operator" value="-">-</button>
+                    <button type="button" class="btn btn-warning btn-lg px-4 py-3 rounded-circle text-white calculator-keys operator" value="-">-</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 my-2 p-0">
-                    <button type="button" class="btn btn-warning rounded-circle text-white calculator-keys operator" value="+">+</buttton>
+                    <button type="button" class="btn btn-warning btn-lg px-4 py-3 rounded-circle text-white calculator-keys operator" value="+">+</buttton>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 my-2 p-0">
-                    <button type="button" class="btn btn-warning rounded-circle text-white calculator-keys operator" value="=">=</button>
+                    <button type="button" class="btn btn-warning btn-lg px-4 py-3 rounded-circle text-white calculator-keys operator" value="=">=</button>
                 </div>
             </div>
         </div>
